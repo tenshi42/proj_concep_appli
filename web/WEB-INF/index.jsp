@@ -9,9 +9,10 @@
 <html>
 <head>
     <title>Accueil</title>
+    <link rel="stylesheet" href="../style.css" />
 </head>
 <body>
-<jsp:include page="/WEB-INF/Menu.jsp" />
+<jsp:include page="/WEB-INF/menu.jsp" />
 
 </body>
 </html>
