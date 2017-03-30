@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: mercier
@@ -7,5 +8,25 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div id="menu">
-
+    <ul>
+        <li>
+            <a href=<c:url value="competitions"/> >Compétitions</a>
+        </li>
+        <li>
+            <a href=<c:url value="blogs"/> >Blogs</a>
+        </li>
+        <c:if test="${sessionScope.User == null}">
+            <li>
+                <a href=<c:url value="inscription"/> >Inscription</a>
+            </li>
+            <li>
+                <a href=<c:url value="connection"/> >Connexion</a>
+            </li>
+        </c:if>
+        <c:if test="${sessionScope.User != null}">
+            <li>
+                <a href=<c:url value="user"/> ><c:out value="${sessionScope.User.username}"/></a>
+            </li>
+        </c:if>
+    </ul>
 </div>
