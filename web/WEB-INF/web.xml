@@ -7,9 +7,25 @@
         <servlet-name>Index</servlet-name>
         <servlet-class>com.Tournevice.Servlet.Index</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Inscription</servlet-name>
+        <servlet-class>com.Tournevice.Servlet.Inscription</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Connection</servlet-name>
+        <servlet-class>com.Tournevice.Servlet.Connection</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern></url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Inscription</servlet-name>
+        <url-pattern>/Inscription</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Connection</servlet-name>
+        <url-pattern>/Connection</url-pattern>
     </servlet-mapping>
 </web-app>

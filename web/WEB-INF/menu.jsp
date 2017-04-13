@@ -17,15 +17,18 @@
         </li>
         <c:if test="${sessionScope.User == null}">
             <li>
-                <a href=<c:url value="inscription"/> >Inscription</a>
+                <a onclick="showInscription()" >Inscription</a>
             </li>
             <li>
-                <a href=<c:url value="connection"/> >Connexion</a>
+                <a onclick="showConnection()" >Connexion</a>
             </li>
         </c:if>
         <c:if test="${sessionScope.User != null}">
             <li>
                 <a href=<c:url value="user"/> ><c:out value="${sessionScope.User.username}"/></a>
+            </li>
+            <li>
+                <a href=<c:url value="Connection"/> ><c:out value="Deconnection"/></a>
             </li>
         </c:if>
     </ul>

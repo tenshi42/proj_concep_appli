@@ -1,3 +1,7 @@
+*{
+    margin: 0;
+}
+
 #menu{
     background-color: #02058b;
 }
@@ -15,4 +19,78 @@
 
 #menu ul li:hover {
     background-color: #1416b9;
+}
+
+.blackBackground{
+    background-color: rgba(10,10,10,0.4);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+/* InscriptionController */
+.snippet{
+    position:fixed;
+    top: 50%;
+    left: 50%;
+    width:20em;
+    height:16em;
+    margin-top: -8em; /*set to a negative number 1/2 of your height*/
+    margin-left: -10em; /*set to a negative number 1/2 of your width*/
+    background-color: #f2f2f2;
+}
+
+#connectionSnippet{
+    width:20em;
+    height:12em;
+    margin-top: -6em; /*set to a negative number 1/2 of your height*/
+    margin-left: -10em; /*set to a negative number 1/2 of your width*/
+}
+
+.snippetTable{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.formLine{
+    padding: 3px 8px 3px 8px;
+    text-align: center;
+}
+
+.formLine input, .formLine div{
+    margin: 5px 0 5px 0;
+    color: #b3b3b3;
+}
+
+.formLine input[type="text"], .formLine input[type="password"], .formLine input[type="email"]{
+    background-color: #f2f2f2;
+    border: none;
+    border-bottom: 1px solid #b3b3b3;
+    color: #b3b3b3;
+    margin: 5px;
+    width: 12em;
+}
+
+.formLine input[type="text"]:hover, .formLine input[type="password"]:hover, .formLine input[type="email"]:hover{
+    background-color: #e6e6e6;
+}
+
+.snippetSubmit{
+    background-color: #02058b;
+    border: none;
+    color: #8b8b8b;
+    font-weight: bold;
+    padding: 4px;
+}
+
+.snippetSubmit:hover{
+    background-color: #6573b4;
+    color: #3f3f3f;
+}
+
+.formseparator div{
+    height: 15px;
+    background-color: #bfbfbf;
+    margin: 5px 0 5px 0;
 }
