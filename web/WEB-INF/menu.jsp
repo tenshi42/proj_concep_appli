@@ -10,7 +10,7 @@
 <div id="menu">
     <ul>
         <li>
-            <a href=<c:url value="competitions"/> >Compétitions</a>
+            <a href=<c:url value="Competitions"/> >Compétitions</a>
         </li>
         <li>
             <a href=<c:url value="blogs"/> >Blogs</a>
