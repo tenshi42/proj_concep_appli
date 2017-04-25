@@ -36,8 +36,10 @@ public class CompteController {
         }
         return new User();
     }
-    public void UpdateUser(){
-
+    public void UpdateUser() throws Exception {
+//        java.sql.Connection db = Database.GetConnection();
+//        Statement statement = db.createStatement();
+//        ResultSet results = statement.executeQuery("UPDATE User SET LastName = " + );
     }
 
     public void insertUser(){
