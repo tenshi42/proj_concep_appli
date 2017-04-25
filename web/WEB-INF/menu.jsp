@@ -25,7 +25,7 @@
         </c:if>
         <c:if test="${sessionScope.User != null}">
             <li>
-                <a href=<c:url value="user"/> ><c:out value="${sessionScope.User.username}"/></a>
+                <a href=<c:url value="Account"/> ><c:out value="${sessionScope.User.username}"/></a>
             </li>
             <li>
                 <a href=<c:url value="Connection"/> ><c:out value="Deconnection"/></a>
