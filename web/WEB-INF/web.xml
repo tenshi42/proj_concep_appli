@@ -15,6 +15,10 @@
         <servlet-name>Connection</servlet-name>
         <servlet-class>com.Tournevice.Servlet.Connection</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Account</servlet-name>
+        <servlet-class>com.Tournevice.Servlet.Account</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
@@ -27,5 +31,9 @@
     <servlet-mapping>
         <servlet-name>Connection</servlet-name>
         <url-pattern>/Connection</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Account</servlet-name>
+        <url-pattern>/Account</url-pattern>
     </servlet-mapping>
 </web-app>

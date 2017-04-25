@@ -11,37 +11,30 @@ public class Database {
     private static Database instance;
     private Connection connection;
 
-    public static Database GetInstance(){
-        if(instance == null)
-            instance = new Database();
-        return instance;
+    public static Connection GetConnection() throws Exception {
+        instance = new Database();
+        return instance.connection;
     }
 
-    private Database(){
+    public static void close() throws SQLException {
+        instance.connection.close();
+    }
+
+    private Database() throws Exception {
         try {
             Class.forName( "com.mysql.jdbc.Driver" );
-        } catch ( ClassNotFoundException e ) {
-            /* Gérer les éventuelles erreurs ici. */
+        } catch ( ClassNotFoundException ignored) {
+            throw new Exception("No driver !");
         }
 
-        /* Connexion à la base de données */
-        String url = "jdbc:mysql://localhost:3306/projet_dev";
+        String url = "jdbc:mysql://localhost:3306/projet_dev?useSSL=false";
         String user = "root";
         String password = "toor";
 
         try {
             connection = DriverManager.getConnection( url, user, password);
-        } catch ( SQLException e ) {
-            /* Gérer les éventuelles erreurs ici */
-        }
-        finally {
-            if ( connection != null ) {
-                try {
-                    connection.close();
-                } catch (SQLException ignore) {
-                    /* Si une erreur survient lors de la fermeture, il suffit de l'ignorer. */
-                }
-            }
+        } catch ( SQLException ignored) {
+            throw new Exception("No connection !!!!");
         }
     }
 }
