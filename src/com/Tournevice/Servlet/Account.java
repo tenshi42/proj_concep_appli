@@ -19,8 +19,11 @@ public class Account extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        if(session.getAttribute("User").toString() != null) {
+        if(session.getAttribute("User") != null) {
             this.getServletContext().getRequestDispatcher("/WEB-INF/account.jsp").forward(request, response);
+        }
+        else {
+            this.getServletContext().getRequestDispatcher("/WEB-INF/notAuthorised.jsp").forward(request, response);
         }
     }
 }
