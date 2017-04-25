@@ -18,6 +18,5 @@ public class Competitions extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.getServletContext().getRequestDispatcher("/WEB-INF/Competitions.jsp").forward(request, response);
-
     }
 }

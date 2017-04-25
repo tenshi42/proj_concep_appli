@@ -25,7 +25,7 @@
             <tr><td><input type="text" id="phone" name="phone"/></td><td></td></tr>
             <tr><td>Pays *</td><td>Etat</td></tr>
             <tr><td><select id="contry" name="contry"><option value="france">France</option><option value="etranger">Etranger</option></select></td><td><input type="text" id="state" name="state"/></td></tr>
-            <tr><td colspan="2"><input type="submit"></td></tr>
+            <tr><td colspan="2"><button type="submit" value="Update">Valider</button></td></tr>
         </table>
     </form>
 </body>
