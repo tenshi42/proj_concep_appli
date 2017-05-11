@@ -1,7 +1,7 @@
 package com.Tournevice.Servlet;
 
 import com.Tournevice.Bean.User;
-import com.Tournevice.Controller.CompteController;
+import com.Tournevice.Controller.AccountController;
 import com.Tournevice.Controller.ConnectionController;
 
 import javax.servlet.ServletException;
@@ -22,7 +22,7 @@ public class Connection extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("mdp");
         ConnectionController cc = new ConnectionController();
-        CompteController cc2 = new CompteController();
+        AccountController cc2 = new AccountController();
         if(cc.connection(email, password)){
             User tmpUser = null;
             try {

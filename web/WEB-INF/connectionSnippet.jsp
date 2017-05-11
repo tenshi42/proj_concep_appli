@@ -6,9 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="blackBackground temps">
+<div class="blackBackground temps"  onclick="hideTemps()">
     <div class="snippet" id="connectionSnippet">
-        <form method="post" action="/Connection">
+        <form method="post" action="/Connection" onclick="(function(e) { e.stopPropagation(); })(event)">
             <table class="snippetTable">
                 <tr><td class="formLine"><div>Connexion</div></td></tr>
                 <tr><td class="formSeparator"><div></div></td></tr>
