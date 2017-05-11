@@ -29,7 +29,7 @@ public class Account extends HttpServlet {
         user.setCity(request.getParameter("city"));
         user.setZipCode(request.getParameter("zipCode"));
 //        user.getState(request.getParameter("state"));
-        // comment
+        // comment lol
 
         try {
             ac.UpdateUser(user);
