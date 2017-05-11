@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="blackBackground temps" onclick="hideTemps()">
-    <div class="snippet" id="inscriptionSnippet" onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)">
+    <div class="snippet" id="inscriptionSnippet" onclick="(function(e) { e.stopPropagation(); })(event)">
         <form method="post" action="Inscription">
             <table class="snippetTable">
                 <tr><td class="formLine"><div>Créer un compte</div></td></tr>

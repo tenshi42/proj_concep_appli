@@ -11,7 +11,7 @@
     <title>Compte</title>
 </head>
 <body>
-    <form action="${pageContext.request.contextPath}/Compte" method="post">
+    <form action="${pageContext.request.contextPath}/Account" method="post">
         <table>
             <tr><td>Nom d'utilisateur *</td><td>Email *</td></tr>
             <tr><td><input type="text" id="username" name="username" value="${sessionScope.User.username}" required/></td><td><input type="text" id="email" name="email" value="${sessionScope.User.email}" required/></td></tr>

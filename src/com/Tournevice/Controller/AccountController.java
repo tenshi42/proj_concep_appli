@@ -3,6 +3,7 @@ package com.Tournevice.Controller;
 import com.Tournevice.Bean.Database;
 import com.Tournevice.Bean.User;
 
+import javax.servlet.http.HttpSession;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,7 +11,7 @@ import java.sql.Statement;
 /**
  * Created by mercier on 25/04/2017.
  */
-public class CompteController {
+public class AccountController {
     public User GetUser(String email) throws Exception {
         java.sql.Connection db = Database.GetConnection();
         Statement statement = db.createStatement();
@@ -36,10 +37,12 @@ public class CompteController {
         }
         return new User();
     }
-    public void UpdateUser() throws Exception {
-//        java.sql.Connection db = Database.GetConnection();
-//        Statement statement = db.createStatement();
-//        ResultSet results = statement.executeQuery("UPDATE User SET LastName = " + );
+    public void UpdateUser(User user) throws Exception {
+        java.sql.Connection db = Database.GetConnection();
+        Statement statement = db.createStatement();
+        statement.executeUpdate("UPDATE User SET LastName = " + user.getLastName() + ", FirstName = " + user.getFirstName() + ", Address = " + user.getAddr() + ", Address2 = " + user.getAddr2() +
+                ", ZipCode = " + user.getZipCode() + ", City = " + user.getCity() + ", Phone = " + user.getPhone() + ", BirthDate = " + user.getBirthDate() + ", State = " + user.getState() +
+                " WHERE Id = " + user.getId());
     }
 
     public void insertUser(){
