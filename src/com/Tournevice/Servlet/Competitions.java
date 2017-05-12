@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Created by quent on 25/04/2017. coucou
+ * Created by quent on 25/04/2017. c
  */
 @WebServlet(name = "Competitions")
 public class Competitions extends HttpServlet {
