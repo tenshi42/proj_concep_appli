@@ -7,10 +7,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>Compte</title>
-</head>
+<jsp:include page="/WEB-INF/head.jsp" />
 <body>
+<jsp:include page="/WEB-INF/menu.jsp" />
     <form action="${pageContext.request.contextPath}/Account" method="post">
         <table>
             <tr><td>Nom d'utilisateur *</td><td>Email *</td></tr>

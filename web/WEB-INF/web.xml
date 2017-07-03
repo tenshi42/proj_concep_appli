@@ -38,7 +38,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Competitions</servlet-name>
-        <url-pattern>/Competitions</url-pattern>
+        <url-pattern>/Competitions/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Account</servlet-name>

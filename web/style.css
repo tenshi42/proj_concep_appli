@@ -94,3 +94,27 @@
     background-color: #bfbfbf;
     margin: 5px 0 5px 0;
 }
+
+#classement{
+    border-collapse: collapse;
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+#classement tr td{
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    padding: 5px;
+}
+
+#classement tr:last-child td{
+    border-bottom: none;
+}
+
+#classement tr td:last-child{
+    border-right: none;
+}
+
+/*#classement tr:nth-last-child{*/
+    /*border-bottom: 0px;*/
+/*}*/

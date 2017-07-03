@@ -17,13 +17,13 @@ public class User {
     private String firstName;
     private String addr;
     private String addr2;
-    private String zipCode;
+    private int zipCode;
     private String city;
     private String phone;
     private String birthDate;
     private String state;
 
-    public User(Integer id, String username, String email, Integer roleId, String lastName, String firstName, String addr, String addr2, String zipCode, String city, String phone, String birthDate, String state) {
+    public User(Integer id, String username, String email, Integer roleId, String lastName, String firstName, String addr, String addr2, int zipCode, String city, String phone, String birthDate, String state) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -114,11 +114,11 @@ public class User {
         this.addr2 = addr2;
     }
 
-    public String getZipCode() {
+    public int getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(String zipCode) {
+    public void setZipCode(int zipCode) {
         this.zipCode = zipCode;
     }
 

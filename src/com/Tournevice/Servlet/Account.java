@@ -27,8 +27,8 @@ public class Account extends HttpServlet {
         user.setAddr2(request.getParameter("addr2"));
         user.setPhone(request.getParameter("phone"));
         user.setCity(request.getParameter("city"));
-        user.setZipCode(request.getParameter("zipCode"));
-//        user.getState(request.getParameter("state"));
+        user.setZipCode(Integer.parseInt(request.getParameter("zipCode")));
+        user.setState(request.getParameter("state"));
         // comment lol
 
         try {
@@ -41,11 +41,13 @@ public class Account extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
+        session.removeAttribute("Error");
         if(session.getAttribute("User") != null) {
             this.getServletContext().getRequestDispatcher("/WEB-INF/account.jsp").forward(request, response);
         }
         else {
-            this.getServletContext().getRequestDispatcher("/WEB-INF/notAuthorised.jsp").forward(request, response);
+            session.setAttribute("Error", "Veuillez vous connecter afin d'accéder a cette page !");
+            response.sendRedirect("/");
         }
     }
 }

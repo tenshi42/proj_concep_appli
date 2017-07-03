@@ -25,7 +25,7 @@ public class AccountController {
             String lastName = results.getString("LastName");
             String addr = results.getString("Address");
             String addr2 = results.getString("Address2");
-            String zipCode = results.getString("ZipCode");
+            int zipCode = results.getInt("ZipCode");
             String city = results.getString("City");
             String phone = results.getString("Phone");
             String birthDate = results.getString("BirthDate");
@@ -35,14 +35,15 @@ public class AccountController {
             db.close();
             return new User(id, user, mail, role, lastName, firstName, addr, addr2, zipCode, city, phone, birthDate, state);
         }
-        return new User();
+        return null;
     }
     public void UpdateUser(User user) throws Exception {
         java.sql.Connection db = Database.GetConnection();
         Statement statement = db.createStatement();
-        statement.executeUpdate("UPDATE User SET LastName = " + user.getLastName() + ", FirstName = " + user.getFirstName() + ", Address = " + user.getAddr() + ", Address2 = " + user.getAddr2() +
-                ", ZipCode = " + user.getZipCode() + ", City = " + user.getCity() + ", Phone = " + user.getPhone() + ", BirthDate = " + user.getBirthDate() + ", State = " + user.getState() +
-                " WHERE Id = " + user.getId());
+        System.out.println(String.valueOf(user.getZipCode()));
+        statement.executeUpdate("UPDATE User SET LastName = \"" + user.getLastName() + "\", FirstName = \"" + user.getFirstName() + "\", Address = \"" + user.getAddr() + "\", Address2 = \"" + user.getAddr2() +
+                "\", ZipCode = " + user.getZipCode() + ", City = \"" + user.getCity() + "\", Phone = \"" + user.getPhone() + /*"\", BirthDate = \"" + user.getBirthDate() +*/ "\", State = \"" + user.getState() +
+                "\" WHERE Id = " + user.getId());
     }
 
     public void insertUser(){

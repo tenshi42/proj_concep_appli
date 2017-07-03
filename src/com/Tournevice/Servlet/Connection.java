@@ -23,23 +23,32 @@ public class Connection extends HttpServlet {
         String password = request.getParameter("mdp");
         ConnectionController cc = new ConnectionController();
         AccountController cc2 = new AccountController();
-        if(cc.connection(email, password)){
-            User tmpUser = null;
-            try {
-                tmpUser = cc2.GetUser(email);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        try {
             HttpSession session = request.getSession();
-            session.setAttribute("User", tmpUser);
+            session.removeAttribute("Error");
+            if(cc.connection(email, password)){
+                User tmpUser = null;
+                try {
+                    tmpUser = cc2.GetUser(email);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                session.setAttribute("User", tmpUser);
+            }
+            else {
+                session.setAttribute("Error", "Login et/ou mot de passe incorect !");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         response.sendRedirect("/");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
+        session.removeAttribute("Error");
         session.removeAttribute("User");
         response.sendRedirect("/");
     }
