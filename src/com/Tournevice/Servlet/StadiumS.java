@@ -12,43 +12,40 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by mercier on 06/07/2017.
  */
-@WebServlet(name = "TeamS")
-public class TeamS extends HttpServlet {
+@WebServlet(name = "StadiumS")
+public class StadiumS extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String[] requestUrl = request.getRequestURI().split("/");
-        TeamController tc = new TeamController();
-        ArrayList<Team> teams = new ArrayList<Team>();
+        StadiumController sc = new StadiumController();
+        HashMap<Integer, Stadium> stadiums = new HashMap<Integer, Stadium>();
 
         if(requestUrl.length == 2) {
             try {
-                teams = tc.GetTeams();
+                stadiums = sc.GetStadiums();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            request.setAttribute("teams", teams);
-            this.getServletContext().getRequestDispatcher("/WEB-INF/Team/View.jsp").forward(request, response);
+            request.setAttribute("teams", stadiums);
+            this.getServletContext().getRequestDispatcher("/WEB-INF/Stadium/View.jsp").forward(request, response);
         }
         else if(requestUrl.length == 3){
-            Team team = new Team();
-            StadiumController sc = new StadiumController();
-            String stadiumName = "";
+            Stadium stadium = new Stadium();
             try {
-                team = tc.GetTeam(Integer.valueOf(requestUrl[2]));
-                stadiumName = sc.GetStadium(team.getStadiumId()).getName();
+                stadium = sc.GetStadium(Integer.valueOf(requestUrl[2]));
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            request.setAttribute("team", team);
-            request.setAttribute("stadiumName", stadiumName);
-            this.getServletContext().getRequestDispatcher("/WEB-INF/Team/ViewOne.jsp").forward(request, response);
+            request.setAttribute("stadium", stadium);
+            this.getServletContext().getRequestDispatcher("/WEB-INF/Stadium/ViewOne.jsp").forward(request, response);
         }
     }
 }

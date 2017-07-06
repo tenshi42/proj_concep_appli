@@ -10,6 +10,8 @@
 <jsp:include page="/WEB-INF/head.jsp" />
 <body>
 <jsp:include page="/WEB-INF/menu.jsp" />
-<a href="/Admin/Team/View">View teams</a>
+<a href="/Admin/Team/View">View teams</a><br />
+<a href="/Admin/Stadium/View">View stadiums</a><br />
+<a href="/Admin/Championship/View">View championship</a><br />
 </body>
 </html>

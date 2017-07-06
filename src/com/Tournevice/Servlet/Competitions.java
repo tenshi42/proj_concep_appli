@@ -26,7 +26,7 @@ public class Competitions extends HttpServlet {
         ChampionshipController cc = new ChampionshipController();
 
         if(requestUrl.length == 2) {
-            ArrayList<String[]> championships = new ArrayList<String[]>();
+            ArrayList<Championship> championships = new ArrayList<Championship>();
             try {
                 championships = cc.GetChampionships();
 
@@ -43,8 +43,8 @@ public class Competitions extends HttpServlet {
             HashMap<Integer, String[]> teamInfos = new HashMap<Integer, String[]>();
             Championship championship = new Championship();
             try {
-                classement = cc.GetChampionship(Integer.valueOf(requestUrl[2]));
-                championship = cc.GetChampoinshipPointsSettings(Integer.valueOf(requestUrl[2]));
+                classement = cc.GetChampionshipScore(Integer.valueOf(requestUrl[2]));
+                championship = cc.GetChampionship(Integer.valueOf(requestUrl[2]));
                 while (sortedClassement.size() != classement.size()){
                     int gt = -1;
                     int key = -1;

@@ -2,15 +2,10 @@ package com.Tournevice.Controller;
 
 import com.Tournevice.Bean.Championship;
 import com.Tournevice.Bean.Database;
-import com.mysql.fabric.xmlrpc.base.Array;
-import com.sun.deploy.util.ArrayUtil;
-import com.sun.deploy.util.StringUtils;
-import com.sun.org.apache.xml.internal.resolver.helpers.Debug;
-import com.sun.org.apache.xml.internal.security.keys.content.KeyValue;
 
 
+import javax.swing.text.StyledEditorKit;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,13 +17,13 @@ import java.util.Set;
  */
 public class ChampionshipController {
 
-    public ArrayList<String[]> GetChampionships() throws Exception {
+    public ArrayList<Championship> GetChampionships() throws Exception {
         java.sql.Connection db = Database.GetConnection();
         Statement statement = db.createStatement();
         ResultSet results = statement.executeQuery("SELECT * FROM championship");
-        ArrayList<String[]> tabNomChampionship = new ArrayList<String[]>();
+        ArrayList<Championship> tabNomChampionship = new ArrayList<Championship>();
         while(results.next()) {
-            tabNomChampionship.add(new String[]{results.getString("Name"), results.getString("Id")});
+            tabNomChampionship.add(new Championship(results.getInt("Id"), results.getString("Name"), results.getInt("Country_id"), results.getInt("PointsOnWin"), results.getInt("PointsOnNul"), results.getInt("PointsOnLose")));
         }
         results.close();
         statement.close();
@@ -36,7 +31,7 @@ public class ChampionshipController {
         return tabNomChampionship;
     }
 
-    public Championship GetChampoinshipPointsSettings(int championshipId) throws Exception {
+    public Championship GetChampionship(int championshipId) throws Exception {
         java.sql.Connection db = Database.GetConnection();
         Statement statement = db.createStatement();
         ResultSet results = statement.executeQuery("SELECT * FROM championship WHERE Id = " + String.valueOf(championshipId));
@@ -48,7 +43,7 @@ public class ChampionshipController {
         return tmpChampionship;
     }
 
-    public HashMap<Integer, int[]> GetChampionship(int championshipId) throws Exception {
+    public HashMap<Integer, int[]> GetChampionshipScore(int championshipId) throws Exception {
         java.sql.Connection db = Database.GetConnection();
         Statement statement = db.createStatement();
         HashMap<Integer, int[]> classement = new HashMap<Integer, int[]>();
@@ -60,7 +55,7 @@ public class ChampionshipController {
         }
         results0.close();
         ResultSet results = statement.executeQuery("SELECT TeamExt_id, TeamDom_id, ScoreExt, ScoreDom FROM `match` WHERE Championship_id = " + championshipId);
-        Championship championship = GetChampoinshipPointsSettings(championshipId);
+        Championship championship = GetChampionship(championshipId);
         while (results.next()){
             int tE = results.getInt("TeamExt_id");
             int tD = results.getInt("TeamDom_id");
@@ -97,5 +92,36 @@ public class ChampionshipController {
         statement.close();
         db.close();
         return ret;
+    }
+
+    public Boolean UpdateChampionship(int id, String name, int countryId, int pointsOnWin, int pointsOnNul, int pointsOnLose) throws Exception {
+        java.sql.Connection db = Database.GetConnection();
+        Statement statement = db.createStatement();
+        int rows = statement.executeUpdate("UPDATE championship SET Name = \"" + name + "\", Country_id = " + String.valueOf(countryId) + ", PointsOnWin = " + String.valueOf(pointsOnWin) + ", PointsOnLose = " + String.valueOf(pointsOnLose) + ", PointsOnNul = " + String.valueOf(pointsOnNul) + " WHERE Id = " + String.valueOf(id));
+        statement.close();
+        db.close();
+        return rows > 0;
+    }
+
+    public int InsertChampionship(String name, int countryId, int pointsOnWin, int pointsOnNul, int pointsOnLose) throws Exception {
+        java.sql.Connection db = Database.GetConnection();
+        Statement statement = db.createStatement();
+        boolean res = statement.execute("INSERT INTO championship (Name, Country_id, PointsOnWin, PointsOnNul, PointsOnLose) VALUE (\"" + name + "\"," + String.valueOf(countryId) + "," + String.valueOf(pointsOnWin) + "," + String.valueOf(pointsOnNul) + "," + String.valueOf(pointsOnLose) + ")");
+        ResultSet result = statement.executeQuery("SELECT LAST_INSERT_ID() as id FROM championship");
+        result.next();
+        int id = result.getInt("id");
+        result.close();
+        statement.close();
+        db.close();
+        return id;
+    }
+
+    public Boolean DeleteChampionship(int id) throws Exception {
+        java.sql.Connection db = Database.GetConnection();
+        Statement statement = db.createStatement();
+        Boolean res = statement.execute("DELETE FROM championship WHERE Id = " + String.valueOf(id));
+        statement.close();
+        db.close();
+        return res;
     }
 }

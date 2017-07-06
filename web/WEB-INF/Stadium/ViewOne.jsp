@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
-  User: quent
-  Date: 25/04/2017
-  Time: 09:22
+  User: mercier
+  Date: 05/07/2017
+  Time: 11:30
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -11,11 +11,10 @@
 <jsp:include page="/WEB-INF/head.jsp" />
 <body>
 <jsp:include page="/WEB-INF/menu.jsp" />
-<h1>Liste des compétitions</h1>
-<div>
-    <c:forEach var="c" items="${championships}">
-        <a href ="/Competitions/<c:out value='${c.id}'/>"><c:out value='${c.name}'/></a>
-    </c:forEach>
-</div>
+<h1>Détails du stade</h1>
+<table id="classement">
+    <tr><td>Nom : </td><td>${stadium.name}</td></tr>
+    <tr><td>Capacité : </td><td>${stadium.capacity}</td></tr>
+</table>
 </body>
 </html>

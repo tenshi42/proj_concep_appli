@@ -11,12 +11,13 @@
 <jsp:include page="/WEB-INF/head.jsp" />
 <body>
 <jsp:include page="/WEB-INF/menu.jsp" />
-<h1>Détails de l'équipes</h1>
+<h1>Détails du championat</h1>
 <table id="classement">
-    <tr><td>Nom : </td><td>${team.name}</td></tr>
-    <tr><td>Ville : </td><td>${team.city}</td></tr>
-    <tr><td>Entraineur : </td><td>${team.trainingOfficer}</td></tr>
-    <tr><td>Stade : </td><td>${stadiumName}</td></tr>
+    <tr><td>Nom : </td><td>${championship.name}</td></tr>
+    <tr><td>Pays : </td><td>${countryName}</td></tr>
+    <tr><td>Points en cas de victoire : </td><td>${championship.pointsOnWin}</td></tr>
+    <tr><td>Points en cas de match nul : </td><td>${championship.pointsOnNul}</td></tr>
+    <tr><td>Points en cas de défaite : </td><td>${championship.pointsOnLose}</td></tr>
 </table>
 </body>
 </html>

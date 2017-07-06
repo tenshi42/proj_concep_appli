@@ -39,4 +39,35 @@ public class TeamController {
         db.close();
         return tmpTeam;
     }
+
+    public Boolean UpdateTeam(int id, String name, String city, String trainingOfficer, int stadiumId) throws Exception {
+        java.sql.Connection db = Database.GetConnection();
+        Statement statement = db.createStatement();
+        int rows = statement.executeUpdate("UPDATE teams SET Name = \"" + name + "\", City = \"" + city + "\", TrainingOfficer = \"" + trainingOfficer + "\", Stadium_id = " + String.valueOf(stadiumId) + " WHERE Id = " + String.valueOf(id));
+        statement.close();
+        db.close();
+        return rows > 0;
+    }
+
+    public int InsertTeam(String name, String city, String trainingOfficer, int stadiumId) throws Exception {
+        java.sql.Connection db = Database.GetConnection();
+        Statement statement = db.createStatement();
+        boolean res = statement.execute("INSERT INTO teams (Name, City, TrainingOfficer, Stadium_id) VALUE (\"" + name + "\", \"" + city + "\", \"" + trainingOfficer + "\", " + String.valueOf(stadiumId) + ")");
+        ResultSet result = statement.executeQuery("SELECT LAST_INSERT_ID() as id FROM teams");
+        result.next();
+        int id = result.getInt("id");
+        result.close();
+        statement.close();
+        db.close();
+        return id;
+    }
+
+    public Boolean DeleteTeam(int id) throws Exception {
+        java.sql.Connection db = Database.GetConnection();
+        Statement statement = db.createStatement();
+        Boolean res = statement.execute("DELETE FROM teams WHERE Id = " + String.valueOf(id));
+        statement.close();
+        db.close();
+        return res;
+    }
 }

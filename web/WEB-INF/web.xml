@@ -31,6 +31,10 @@
         <servlet-name>Team</servlet-name>
         <servlet-class>com.Tournevice.Servlet.TeamS</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Stadium</servlet-name>
+        <servlet-class>com.Tournevice.Servlet.StadiumS</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
@@ -59,5 +63,9 @@
     <servlet-mapping>
         <servlet-name>Team</servlet-name>
         <url-pattern>/Team/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Stadium</servlet-name>
+        <url-pattern>/Stadium/*</url-pattern>
     </servlet-mapping>
 </web-app>
