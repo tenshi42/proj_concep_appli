@@ -1,5 +1,6 @@
 package com.Tournevice.Controller;
 
+import com.Tournevice.Bean.Championship;
 import com.Tournevice.Bean.Database;
 import com.mysql.fabric.xmlrpc.base.Array;
 import com.sun.deploy.util.ArrayUtil;
@@ -19,7 +20,7 @@ import java.util.Set;
 /**
  * Created by quentin on 25/04/2017.
  */
-public class CompetitionsController {
+public class ChampionshipController {
 
     public ArrayList<String[]> GetChampionships() throws Exception {
         java.sql.Connection db = Database.GetConnection();
@@ -35,43 +36,46 @@ public class CompetitionsController {
         return tabNomChampionship;
     }
 
-    public int[] GetChampoinshipPointsSettings(int championshipId) throws Exception {
+    public Championship GetChampoinshipPointsSettings(int championshipId) throws Exception {
         java.sql.Connection db = Database.GetConnection();
         Statement statement = db.createStatement();
         ResultSet results = statement.executeQuery("SELECT * FROM championship WHERE Id = " + String.valueOf(championshipId));
         results.next();
-        int[] ret = new int[]{results.getInt("PointsOnWin"), results.getInt("PointsOnNul"), results.getInt("PointsOnLose")};
+        Championship tmpChampionship = new Championship(results.getInt("Id"), results.getString("Name"), results.getInt("Country_id"), results.getInt("PointsOnWin"), results.getInt("PointsOnNul"), results.getInt("PointsOnLose"));
         results.close();
         statement.close();
         db.close();
-        return ret;
+        return tmpChampionship;
     }
 
     public HashMap<Integer, int[]> GetChampionship(int championshipId) throws Exception {
         java.sql.Connection db = Database.GetConnection();
         Statement statement = db.createStatement();
-        ResultSet results = statement.executeQuery("SELECT TeamExt_id, TeamDom_id, ScoreExt, ScoreDom FROM `match` WHERE Championship_id = " + championshipId);
         HashMap<Integer, int[]> classement = new HashMap<Integer, int[]>();
-        int[] pointsSettings = GetChampoinshipPointsSettings(championshipId);
+        ResultSet results0 = statement.executeQuery("SELECT Id FROM teams WHERE Championship_id = " + championshipId);
+        while (results0.next()){
+            int tI = results0.getInt("Id");
+            if(!classement.containsKey(tI))
+                classement.put(tI, new int[]{0,0,0,0});
+        }
+        results0.close();
+        ResultSet results = statement.executeQuery("SELECT TeamExt_id, TeamDom_id, ScoreExt, ScoreDom FROM `match` WHERE Championship_id = " + championshipId);
+        Championship championship = GetChampoinshipPointsSettings(championshipId);
         while (results.next()){
             int tE = results.getInt("TeamExt_id");
             int tD = results.getInt("TeamDom_id");
             int sE = results.getInt("ScoreExt");
             int sD = results.getInt("ScoreDom");
-            if(!classement.containsKey(tE))
-                classement.put(tE, new int[]{0,0,0,0});
-            if(!classement.containsKey(tD))
-                classement.put(tD, new int[]{0,0,0,0});
 
             classement.get(tE)[0] += ((sE>sD)?1:0);
             classement.get(tE)[1] += ((sE==sD)?1:0);
             classement.get(tE)[2] += ((sE<sD)?1:0);
-            classement.get(tE)[3] += ((sE>sD)?pointsSettings[0]:0) + ((sE==sD)?pointsSettings[1]:0) + ((sE<sD)?pointsSettings[2]:0);
+            classement.get(tE)[3] += ((sE>sD)?championship.getPointsOnWin():0) + ((sE==sD)?championship.getPointsOnNul():0) + ((sE<sD)?championship.getPointsOnLose():0);
 
             classement.get(tD)[0] += ((sE<sD)?1:0);
             classement.get(tD)[1] += ((sE==sD)?1:0);
             classement.get(tD)[2] += ((sE>sD)?1:0);
-            classement.get(tD)[3] += ((sE<sD)?pointsSettings[0]:0) + ((sE==sD)?pointsSettings[1]:0) + ((sE>sD)?pointsSettings[2]:0);
+            classement.get(tD)[3] += ((sE<sD)?championship.getPointsOnWin():0) + ((sE==sD)?championship.getPointsOnNul():0) + ((sE>sD)?championship.getPointsOnLose():0);
         }
         results.close();
         statement.close();
@@ -94,5 +98,4 @@ public class CompetitionsController {
         db.close();
         return ret;
     }
-
 }

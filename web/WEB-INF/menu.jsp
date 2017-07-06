@@ -24,6 +24,11 @@
             </li>
         </c:if>
         <c:if test="${sessionScope.User != null}">
+            <c:if test="${sessionScope.User.roleId == 1}">
+                <li>
+                    <a href=<c:url value="/Admin"/> ><c:out value="Admin"/></a>
+                </li>
+            </c:if>
             <li>
                 <a href=<c:url value="/Account"/> ><c:out value="${sessionScope.User.username}"/></a>
             </li>

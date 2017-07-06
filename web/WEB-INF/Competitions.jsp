@@ -11,6 +11,7 @@
 <jsp:include page="/WEB-INF/head.jsp" />
 <body>
 <jsp:include page="/WEB-INF/menu.jsp" />
+<h1>Liste des compétitions</h1>
 <div>
     <c:forEach var="c" items="${championships}">
         <a href ="/Competitions/<c:out value='${c[1]}'/>"><c:out value='${c[0]}'/></a>

@@ -9,8 +9,8 @@ import java.util.Objects;
  * Created by mercier on 13/04/2017.
  */
 public class User {
-    private Integer id;
-    private Integer roleId;
+    private int id;
+    private int roleId;
     private String email;
     private String username;
     private String lastName;
@@ -66,19 +66,19 @@ public class User {
         this.email = email;
     }
 
-    public Integer getRoleId() {
+    public int getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(Integer roleId) {
+    public void setRoleId(int roleId) {
         this.roleId = roleId;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -11,6 +11,7 @@
 <jsp:include page="/WEB-INF/head.jsp" />
 <body>
 <jsp:include page="/WEB-INF/menu.jsp" />
+<h1>Classement de la ligue : ${championship.name}</h1>
 <div>
     <table id="classement">
         <tr><td>Rang</td><td>Equipe</td><td>Pts.</td><td>J.</td><td>G.</td><td>N.</td><td>P.</td></tr>

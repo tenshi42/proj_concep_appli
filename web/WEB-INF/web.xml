@@ -23,6 +23,10 @@
         <servlet-name>Account</servlet-name>
         <servlet-class>com.Tournevice.Servlet.Account</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Admin</servlet-name>
+        <servlet-class>com.Tournevice.Servlet.Admin</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
@@ -43,5 +47,9 @@
     <servlet-mapping>
         <servlet-name>Account</servlet-name>
         <url-pattern>/Account</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Admin</servlet-name>
+        <url-pattern>/Admin/*</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -1,6 +1,7 @@
 package com.Tournevice.Servlet;
 
-import com.Tournevice.Controller.CompetitionsController;
+import com.Tournevice.Bean.Championship;
+import com.Tournevice.Controller.ChampionshipController;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +23,7 @@ public class Competitions extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String[] requestUrl = request.getRequestURI().split("/");
-        CompetitionsController cc = new CompetitionsController();
+        ChampionshipController cc = new ChampionshipController();
 
         if(requestUrl.length == 2) {
             ArrayList<String[]> championships = new ArrayList<String[]>();
@@ -40,10 +41,12 @@ public class Competitions extends HttpServlet {
             HashMap<Integer, int[]> classement = new HashMap<Integer, int[]>();
             ArrayList<Integer> sortedClassement = new ArrayList<Integer>();
             HashMap<Integer, String[]> teamInfos = new HashMap<Integer, String[]>();
+            Championship championship = new Championship();
             try {
                 classement = cc.GetChampionship(Integer.valueOf(requestUrl[2]));
+                championship = cc.GetChampoinshipPointsSettings(Integer.valueOf(requestUrl[2]));
                 while (sortedClassement.size() != classement.size()){
-                    int gt = 0;
+                    int gt = -1;
                     int key = -1;
                     for(int a : classement.keySet()){
                         if(classement.get(a)[3] > gt && !sortedClassement.contains(a)){
@@ -63,6 +66,7 @@ public class Competitions extends HttpServlet {
             request.setAttribute("classement", classement);
             request.setAttribute("sortedClassement", sortedClassement);
             request.setAttribute("teamInfos", teamInfos);
+            request.setAttribute("championship", championship);
 
             this.getServletContext().getRequestDispatcher("/WEB-INF/CompetitionClassement.jsp").forward(request, response);
         }
