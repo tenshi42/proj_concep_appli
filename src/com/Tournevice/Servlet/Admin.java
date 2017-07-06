@@ -63,6 +63,12 @@ public class Admin extends HttpServlet {
             HashMap<Integer, Stadium> stadiums = sc.GetStadiums();
             request.setAttribute("team", team);
             request.setAttribute("stadiums", stadiums);
+            request.setAttribute("teamId", Integer.valueOf(url[4]));
+            this.getServletContext().getRequestDispatcher("/WEB-INF/Team/Form.jsp").forward(request, response);
+        }
+        else if(url[3].equals("Add")){
+            HashMap<Integer, Stadium> stadiums = sc.GetStadiums();
+            request.setAttribute("stadiums", stadiums);
             this.getServletContext().getRequestDispatcher("/WEB-INF/Team/Form.jsp").forward(request, response);
         }
     }

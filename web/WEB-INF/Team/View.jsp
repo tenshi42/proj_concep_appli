@@ -12,6 +12,7 @@
 <body>
 <jsp:include page="/WEB-INF/menu.jsp" />
 <h1>Liste des équipes</h1>
+<a href="/Admin/Team/Add">Ajouter une équipe</a>
 <table id="classement">
     <tr><td>Nom</td><td>Ville</td><td>Entraineur</td><td>Stade</td><td></td><td></td></tr>
     <c:forEach var="t" items="${teams}">
